@@ -8,6 +8,7 @@
     "test:all": "cypress run --spec \"**/*.features\"",
     "test:each": "cypress run --spec \"**/*.feature\"",
     "test:debug": "jest && DEBUG=cypress:* cypress open\n",
+    "open": "cypress open",
     "fixStyle": "eslint . --fix",
     "semantic-release": "semantic-release"
   },

@@ -1,0 +1,17 @@
+{
+    "name": "e2e",
+    "type": "node",
+    "request": "launch",
+    "console": "integratedTerminal",
+    "program": "${workspaceRoot}/node_modules/cucumber/bin/cucumber-js",
+    "args": [
+        "src/features/*/*.feature",
+        "-r",
+        "./src/step_definitions/*.ts",
+        "--tags",
+        "@your-tags",
+        "--no-timeouts",
+        "--colors"
+    ],
+    "runtimeExecutable": null
+}

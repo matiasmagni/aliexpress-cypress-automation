@@ -64,8 +64,5 @@ cypress/screenshots
 cypress/cucumber-json
 target
 
-#optional .vscode settings directory
-.vscode
-
-cypress-cucumber-example/
-cypress-cucumber-webpack-typescript-example/
+# package-lock.json
+package-lock.json
