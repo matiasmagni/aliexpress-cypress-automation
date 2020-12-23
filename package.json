@@ -4,10 +4,10 @@
   "description": "Run gherkin-syntaxed specs with cypress.io",
   "main": "lib/index.js",
   "scripts": {
-    "test": "eslint . && jest && yarn test:all",
-    "test:all": "cypress run --spec \"**/*.feature\"",
-    "test:debug": "jest && DEBUG=cypress:* cypress open\n",
-    "open": "cypress open",
+    "test": "eslint . && jest && yarn test:all && node cucumber-html-reporter.js",
+    "test:all": "cypress run --spec \"**/*.feature\" && node cucumber-html-reporter.js",
+    "test:debug": "jest && DEBUG=cypress:* cypress open && node cucumber-html-reporter.js\n",
+    "open": "cypress open && node cucumber-html-reporter.js",
     "fixStyle": "eslint . --fix",
     "semantic-release": "semantic-release"
   },
@@ -50,6 +50,7 @@
     "cosmiconfig": "^4.0.0",
     "cucumber": "npm:@cucumber/cucumber",
     "cucumber-expressions": "^7.0.0",
+    "cucumber-html-reporter": "^5.3.0",
     "cucumber-tag-expressions": "^1.1.1",
     "cypress-cucumber-preprocessor": "^4.0.0",
     "debug": "^3.2.7",
@@ -57,6 +58,7 @@
     "glob": "^7.1.2",
     "js-string-escape": "^1.0.1",
     "minimist": "^1.2.5",
+    "moment": "^2.29.1",
     "resolve": "^1.19.0",
     "through": "^2.3.8"
   },
@@ -93,6 +95,16 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "stepDefinitions": "cypress/support/step_definitions",
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/reports",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
     }
   }
 }
