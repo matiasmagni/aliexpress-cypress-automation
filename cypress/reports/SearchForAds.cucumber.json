@@ -1,0 +1,97 @@
+[
+  {
+    "description": "  As a Customer, I want to see if the second ad from the second results page when searching for \"Iphone\"\n  on AliExpress has at least 1 item to be bought.",
+    "keyword": "Feature",
+    "name": "Search for ads",
+    "line": 1,
+    "id": "search-for-ads",
+    "tags": [],
+    "uri": "SearchForAds.feature",
+    "elements": [
+      {
+        "id": "search-for-ads;customer-searches-for-\"iphone\"-and-see-at-least-1-item-to-buy-on-the-second-ad-at-the-second-results-page",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Customer searches for \"Iphone\" and see at least 1 item to buy on the second ad at the second results page",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "the customer has navigated to AliExpress home page",
+            "result": {
+              "status": "passed",
+              "duration": 25536000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "name": "the customer searches for 'Iphone' on AliExpress searchbox",
+            "result": {
+              "status": "undefined",
+              "duration": 28000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 8,
+            "name": "AliExpress 1° results page is displayed",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "the customer clicks on 'Next' button at Aliexpress results page paginator",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "AliExpress 2° results page is displayed",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 11,
+            "name": "a 2° ad is displayed at AliExpress 2° results page",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 12,
+            "name": "the customer clicks on 2° ad's details link",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 13,
+            "name": "the ad has at least 1 item to be bought",
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

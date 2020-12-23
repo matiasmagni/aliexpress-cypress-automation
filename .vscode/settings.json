@@ -4,7 +4,7 @@ This allows auto-completion of gherkin commands and assist in designing the cucu
 */
 {
     "cucumberautocomplete.steps": [
-        "./cypress/support/step_definitions/*.js"
+        "./cypress/support/step_definitions/*.ts"
     ],
     "cucumberautocomplete.syncfeatures": "./cypress/integration",
     "cucumberautocomplete.strictGherkinCompletion": true,
