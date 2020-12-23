@@ -63,6 +63,3 @@ cypress/videos
 cypress/screenshots
 cypress/cucumber-json
 target
-
-# package-lock.json
-package-lock.json

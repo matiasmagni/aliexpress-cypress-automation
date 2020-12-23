@@ -3,7 +3,7 @@
 
 # Run cucumber/gherkin-syntaxed specs with Cypress.io
 
-The **cypress-cucumber-preprocessor** adds support for using feature files when testing with Cypress.
+The **cypress-cucumber-preprocessor-boilerplate** adds support for using feature files when testing with Cypress.
 
 You can follow the documentation below, or if you prefer to hack on a working example, take a look at [https://github.com/TheBrainFamily/cypress-cucumber-example](https://github.com/TheBrainFamily/cypress-cucumber-example
 )
