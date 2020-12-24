@@ -8,5 +8,5 @@ This allows auto-completion of gherkin commands and assist in designing the cucu
     ],
     "cucumberautocomplete.syncfeatures": "./cypress/integration",
     "cucumberautocomplete.strictGherkinCompletion": true,
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
 }
