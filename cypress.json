@@ -1,3 +1,5 @@
 {
-  "testFiles": "**/*.{feature,features}"
+  "baseUrl": "https://www.aliexpress.com",
+  "testFiles": "**/*.{feature,features}",
+  "defaultCommandTimeout": 10000
 }

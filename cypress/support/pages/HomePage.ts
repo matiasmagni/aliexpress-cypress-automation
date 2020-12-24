@@ -1,25 +1,17 @@
 import BasePage from "./BasePage";
 
-
-const URL = 'https://www.aliexpress.com/';
-
 export default class HomePage extends BasePage {
-    
-    private readonly SEARCH_FIELD = '#search-key';
 
-    constructor() {
-        super(URL);
+    public getSearchField(): Cypress.Chainable {
+        return cy.get(this.selectors.SEARCH_FIELD);
     }
 
-    public isSearchBoxVisible(): boolean {
-        cy.get(this.SEARCH_FIELD).should('be.visible');
-
-        return true;
+    public getSearchButton(): Cypress.Chainable {
+        return cy.get(this.selectors.SEARCH_BUTTON);
     }
 
     public searchFor(text: string): void {
-        cy.get(this.SEARCH_FIELD).type(text);
+        this.getSearchField().type(text);
+        this.getSearchButton().click();
     }
-
-
 }

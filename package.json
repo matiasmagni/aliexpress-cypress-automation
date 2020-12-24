@@ -8,8 +8,7 @@
   },
   "scripts": {
     "test": "cypress run --spec \"**/*.feature\" || node cucumber-html-reporter.js",
-    "test:all": "cypress run --spec \"**/*.features\" || node cucumber-html-reporter.js",
-    "debug": "cypress open || node cucumber-html-reporter.js",
+    "debug": "cypress open",
     "clean:reports": "node remove-all-reports.js"
   },
   "devDependencies": {
