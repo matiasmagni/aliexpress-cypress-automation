@@ -2,6 +2,10 @@
 
 The **aliexpress-test-automation-framework** adds support for using feature files when testing with Cypress.
 
+Demo video:
+
+[![Alt text](https://i.ibb.co/J5bChdV/Cypress-Cucumber-repo.jpg)](https://youtu.be/78fh1avPSr8)
+
 #### Table of contents
 
 * [Get started](#get-started)
