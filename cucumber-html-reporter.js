@@ -2,7 +2,8 @@ const reporter = require("cucumber-html-reporter");
 const fs = require("fs");
 const moment = require("moment");
 
-const metadataFile = "./cypress/reports/metadata.json";
+const reportsPath = "./cypress/reports";
+const metadataFile = `${reportsPath}/metadata.json`;
 
 fs.readFile(metadataFile, "utf-8", (error, metadata) => {
   if (error) {
@@ -15,7 +16,7 @@ fs.readFile(metadataFile, "utf-8", (error, metadata) => {
       jsonDir: "cypress/reports",
       output: `cypress/reports/${moment().format(
         "YYYY-MM-DD_h-mm-ssa"
-      )}_cucumber-report.html`,
+      )}_aliexpress-report.html`,
       reportSuiteAsScenarios: true,
       scenarioTimestamp: true,
       launchReport: true,
@@ -31,5 +32,10 @@ fs.readFile(metadataFile, "utf-8", (error, metadata) => {
     };
 
     reporter.generate(options);
+
+    // Deletes all the json files inside the reports directory
+    fs.readdirSync(reportsPath)
+      .filter(file => /[.]json$/.test(file))
+      .map(file => fs.unlinkSync(`${reportsPath}/${file}`));
   }
 });

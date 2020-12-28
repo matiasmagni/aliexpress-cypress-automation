@@ -1,3 +1,14 @@
 {
-    "testFiles": "**/*.feature"
+  "projectId": "8dpnan",
+  "baseUrl": "https://www.aliexpress.com",
+  "testFiles": "**/*.{feature,features}",
+  "viewportWidth": 1024,
+  "viewportHeight": 800,
+  "chromeWebSecurity": false,
+  "retries": {
+    "runMode": 2,
+    "openMode": 0
+  },
+  "pageLoadTimeout": 30000,
+  "defaultCommandTimeout": 5000
 }

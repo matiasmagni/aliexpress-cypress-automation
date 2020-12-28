@@ -1,0 +1,8 @@
+{
+    "URL": "wholesale",
+    "NAV_BREADCRUMB": ".nav-breadcrumb",
+    "PAGINATOR_NEXT_BUTTON": ".next-next",
+    "PAGINATOR_CURRENT_PAGE_BUTTON": ".next-current",
+    "PRODUCT_ITEM": ".list-item [product-index='{}']",
+    "PRODUCT_ITEM_LINK": ".list-item [product-index='1'] a.item-title"
+}

@@ -1,25 +1,21 @@
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![CircleCI](https://circleci.com/gh/TheBrainFamily/cypress-cucumber-preprocessor.svg?style=shield)](https://circleci.com/gh/TheBrainFamily/cypress-cucumber-preprocessor)
+# Example of running cucumber/gherkin-syntaxed specs with Cypress.io over AliExpress
 
-# Run cucumber/gherkin-syntaxed specs with Cypress.io
+The **aliexpress-test-automation-framework** adds support for using feature files when testing with Cypress.
 
-The **cypress-cucumber-preprocessor-boilerplate** adds support for using feature files when testing with Cypress.
+Demo video:
 
-You can follow the documentation below, or if you prefer to hack on a working example, take a look at [https://github.com/TheBrainFamily/cypress-cucumber-example](https://github.com/TheBrainFamily/cypress-cucumber-example
-)
+[![Alt text](https://i.ibb.co/J5bChdV/Cypress-Cucumber-repo.jpg)](https://youtu.be/78fh1avPSr8)
 
 #### Table of contents
 
 * [Get started](#get-started)
   * [Installation](#installation)
-  * [Cypress Configuration](#cypress-configuration)
   * [Configuration](#configuration)
 * [How to organize the tests](#how-to-organize-the-tests)
   * [Single feature files](#single-feature-files)
   * [Bundled features files](#bundled-features-files)
   * [Step definitions](#step-definitions)
     * [Step definitions creation](#step-definitions-creation)
-    * [Reusable step definitions](#reusable-step-definitions)
 * [How to write tests](#how-to-write-tests)
   * [Cucumber Expressions](#cucumber-expressions)
   * [Given/When/Then functions](#cucumber-functions)
@@ -34,47 +30,16 @@ You can follow the documentation below, or if you prefer to hack on a working ex
   * [Ignoring specific scenarios using tags when executing test runner](#ignoring-specific-scenarios-using-tags-when-executing-test-runner)
   * [Output](#output)
 * [IDE support](#ide-support)
-  * [Webstorm](#webstorm)
-  * [Intellij IDEA](#intellij-IDEA)
   * [Visual Studio Code](#visual-Studio-Code)
-* [TypeScript Support](#typeScript-support)
-* [How to contribute](#how-to-contribute)
-* [Roadmap](#roadmap)
-* [Credits](#credits)
-* [Oldschool/Legacy Cucumber style](#legacy)
 
 ## Get started
 
 ### Installation
 
-Install the plugin by running:
+Install the framework:
 
 ```shell
-npm install --save-dev cypress-cucumber-preprocessor
-```
-
-### Cypress Configuration
-
-Add it to your plugins:
-
-`cypress/plugins/index.js`
-
-```javascript
-const cucumber = require('cypress-cucumber-preprocessor').default
-
-module.exports = (on, config) => {
-  on('file:preprocessor', cucumber())
-}
-```
-
-Add support for feature files to your Cypress configuration
-
-`cypress.json`
-
-```json
-{
-  "testFiles": "**/*.feature"
-}
+yarn install
 ```
 
 ### Configuration
@@ -102,22 +67,25 @@ stepDefinitions | `cypress/integration` when `nonGlobalStepDefinitions` is true 
 
 ### Single feature files
 
-Put your feature files in `cypress/integration/`
+Put the feature files in `cypress/integration/`
 
-Example: cypress/integration/Google.feature
+Example: cypress/integration/SearchForAds.feature
 
 ```gherkin
-Feature: The Facebook
+Feature: Search for ads
+  As a Customer, I want to see if the second ad from the second results page when searching for "Iphone"
+  on AliExpress has at least 1 item to be bought.
 
-  I want to open a social network page
-  
-  @focus
-  Scenario: Opening a social network page
-    Given I open Google page
-    Then I see "google" in the title
+  Scenario: Customer searches for "Iphone" and see at least 1 item to buy on the second ad at the second results page
+    Given the customer has navigated to AliExpress home page
+    When the customer searches for "Iphone" on AliExpress searchbox
+    Then AliExpress 1° results page is correctly displayed
+    When the customer clicks on "Next" button at AliExpress results page paginator
+    Then AliExpress 2° results page is correctly displayed
+    And a 2° ad is correctly displayed at AliExpress 2° results page
+    When the customer clicks on 2° ad's details link
+    Then the ad has at least 1 item to be bought
 ```
-
-*The @focus tag is not necessary, but we want to you to notice it so you look it up below. **It will speed up your workflow significantly**!*
 
 ### Bundled features files
 
@@ -136,12 +104,6 @@ You also have to add support for `.features` files to your Cypress configuration
 }
 ```
 
-To run the bundled tests:
-
-```shell
-cypress run --spec **/*.features
-```
-
 ### Step definitions
 
 **This is the RECOMMENDED way**
@@ -150,37 +112,21 @@ cypress run --spec **/*.features
 
 The `.feature` file will use steps definitions from a directory with the same name as your `.feature` file. The javascript files containing the step definitions can have other names if you want to break them into different concerns.
 
-Easier to show than to explain, so, assuming the feature file is in `cypress/integration/Google.feature` , as proposed above, the preprocessor will read all the files inside `cypress/integration/Google/`, so:
+Easier to show than to explain, so, assuming the feature file is in `cypress/integration/SearhForAds.feature` , as proposed above, the preprocessor will read all the files inside `cypress/integration`, so:
 
-`cypress/integration/Google/google.js` (or any other .js file in the same path)
-
-```javascript
-import { Given } from "cypress-cucumber-preprocessor/steps";
-
-const url = 'https://google.com'
-Given('I open Google page', () => {
-  cy.visit(url)
-})
-```
-
-This is a good place to put *before/beforeEach/after/afterEach* hooks related to **that particular feature**. This is incredibly hard to get right with pure cucumber.  
-
-#### Reusable step definitions
-
-We also have a way to create reusable step definitions. Put them in `cypress/integration/common/`
-
-Example:
-cypress/integration/common/i_see_string_in_the_title.js
+`cypress/support/step_definitions/SearchForAds.js` (or any other .js file in the same path)
 
 ```javascript
-import { Then } from "cypress-cucumber-preprocessor/steps";
+/// <reference types="Cypress" />
 
-Then(`I see {string} in the title`, (title) => {
-  cy.title().should('include', title)
-})
+import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
+import HomePage from '../pages/HomePage';
+
+Given(`the customer has navigated to AliExpress home page`, () => {
+  const page = new HomePage();
+  page.navigateToThisPage(30);
+});
 ```
-
-This is a good place to put global *before/beforeEach/after/afterEach* hooks.
 
 ## How to write tests
 
@@ -341,13 +287,29 @@ Feature: Smart Tagging
 
 ## How to run the tests
 
-Run your Cypress Launcher the way you would usually do, for example:
+To run the tests:
 
-```bash
-./node_modules/.bin/cypress open
+```shell
+yarn test
 ```
 
-click on a `.feature` file on the list of specs, and see the magic happening!
+To run the tests using online Cypress' dashboard:
+
+```shell
+yarn test:dashboard
+```
+
+To run the test using Cypress electron app:
+
+```shell
+yarn test:debug
+```
+
+To clean all the generated HTML reports:
+
+```shell
+yarn clean:reports
+```
 
 ### Running tagged tests
 
@@ -417,26 +379,7 @@ This behaviour is configurable. Use [cosmiconfig](https://github.com/davidthecla
   }
 ```
 
-#### Cucumber.json options
-
-Option | Default value | Description
------------- | ------------- | -------------
-outputFolder | `cypress/cucumber-json` | The folder to write the files to
-filePrefix | `''` *(no prefix)* | A separate json file is generated for each feature based on the name of the feature file. All generated file names will be prefixed with this option if specified
-fileSuffix | `.cucumber` | A suffix to add to each generated filename
-generate | `false` | Flag to output cucumber.json or not
-
 ## IDE support
-
-### WebStorm
-
-Note, only WebStorm 2019.2 and later versions are able to [resolve steps located outside of a step_definitions folder](https://youtrack.jetbrains.com/issue/WEB-11505)
-
-### Intellij IDEA
-
-Intellij IDEA Community Edition does not support cucumber in javascript, but the Ultimate Edition can provide the same level support for step resolution as WebStorm.
-
-To enable cucumber step resolution in Intellij IDEA Ulimate edition you will need to download and enable the JetBrains [Cucumber JS plugin](https://plugins.jetbrains.com/plugin/7418-cucumber-js/). In WebStorm this plugin is already bundled into the distribution.
 
 ### Visual Studio Code
 
@@ -445,181 +388,3 @@ To get vscode to resolve your steps, install the [Cucumber (Gherkin) Full Suppor
 You will also need to tell the extension the locations of your feature and step definition files [as described here](https://github.com/alexkrechik/VSCucumberAutoComplete#settings-example).
 
 Note, that unlike WebStorm which will correctly identify multiple implementations of matching steps, the vscode extension currently resolves to the first matching occurence it finds on its path.
-
-## TypeScript Support
-
-### Install
-
-Install the plug-in type definitions:
-
-```shell
-npm install --save-dev @types/cypress-cucumber-preprocessor
-```
-
-### With out-of-the-box support
-
-As of [Cypress
-v4.4.0](https://github.com/cypress-io/cypress/releases/tag/v4.4.0), TypeScript
-is supported out-of-the-box. To use it, add this to your `plugins/index.js`:
-
-```javascript
-const browserify = require('@cypress/browserify-preprocessor');
-const cucumber = require('cypress-cucumber-preprocessor').default;
-const resolve = require('resolve');
-
-module.exports = (on, config) => {
-  const options = {
-    ...browserify.defaultOptions,
-    typescript: resolve.sync('typescript', { baseDir: config.projectRoot }),
-  };
-
-  on('file:preprocessor', cucumber(options));
-};
-```
-
-### With Webpack
-
-You can also use a Webpack loader to process feature files (TypeScript supported). To see how it is done please take
-a look here: [cypress-cucumber-webpack-typescript-example](https://github.com/TheBrainFamily/cypress-cucumber-webpack-typescript-example)
-
-### Without Webpack
-
-If you want to use TypeScript, add this to your plugins/index.js:
-
-```javascript
-const cucumber = require("cypress-cucumber-preprocessor").default;
-const browserify = require("@cypress/browserify-preprocessor");
-
-module.exports = (on) => {
-  const options = browserify.defaultOptions;
-
-  options.browserifyOptions.plugin.unshift(['tsify']);
-  // Or, if you need a custom tsconfig.json for your test files:
-  // options.browserifyOptions.plugin.unshift(['tsify', {project: 'path/to/other/tsconfig.json'}]);
-  
-  on("file:preprocessor", cucumber(options));
-};
-```
-
-...and install *tsify*. I'm assuming you already have typescript installed. :-)
-
-```bash
-npm install tsify
-```
-
-Then in your .ts files you need to make sure you either require/import the functions defining step definitions, or declare them as global:
-
-```typescript
-declare const Given, When, Then;
-// OR
-import { Given, Then, When } from "cypress-cucumber-preprocessor/steps";
-```
-
-To see an example take a look here: [https://github.com/TheBrainFamily/cypress-cucumber-typescript-example/](https://github.com/TheBrainFamily/cypress-cucumber-typescript-example/)
-
-<a name="legacy"></a>
-
-## How to contribute
-
-Install all dependencies:
-
-```bash
-npm install
-```
-
-Link the package:
-
-```bash
-npm link
-npm link cypress-cucumber-preprocessor
-```
-
-Run tests:
-
-```bash
-npm test
-```
-
-### Submitting your PR
-
-This repo uses [commitizen](https://github.com/commitizen/cz-cli) to manage commits messages and [semantic-release](https://github.com/semantic-release/semantic-release) to use those commit messages to automatically release this package with proper release version.
-
-If you are confused please ask questions or/and read the documentation of these two fantastic tools! As far as the development goes, you should just do git commit from the command line, and commitizen will guide you through creating a proper commit message.
-
-### Issues
-
-Please let me know if you find any issues or have suggestions for improvements by opening a new issue.
-
-## Roadmap
-
-- (Under discussion) Add option to customize mocha template [#3](https://github.com/TheBrainFamily/cypress-cucumber-preprocessor/issues/3)
-
-<a name="credits"></a>
-
-## Credit where it's due
-
-Based/inspired by the great work from [gherkin-testcafe](https://github.com/sitegeist/gherkin-testcafe), although, with this package we don't have to run Cypress programmatically - with an external runner, we can use Cypress as we are used to :)
-
-Thanks to the Cypress team for the fantastic work and very exciting tool! :-)
-
-Thanks to @fcurella for fantastic work with making the **cypress-cucumber-preprocessor** reactive to file changes. :-)
-
-___
-
-## Oldschool/Legacy Cucumber style
-
-**Not recommended. Please let us know if you decide to use it!**
-
-### Why avoid it
-
-The problem with the legacy structure is that everything is global. This is problematic for multiple reasons.
-
-- It makes it harder to create `.feature` files that read nicely - you have to make sure you are not stepping on toes of already existing step definitions. You should be able to write your tests without worrying about reusability, complex regexp matches, or anything like that. Just write a story. Explain what you want to see without getting into the details. Reuse in the .js files, not in something you should consider an always up-to-date, human-readable documentation.
-- The startup times get much worse - because we have to analyze all the different step definitions so we can match the .feature files to the test.
-- Hooks are problematic. If you put before() in a step definition file, you might think that it will run only for the .feature file related to that step definition. You try the feature you work on, everything seems fine and you push the code. Here comes a surprise - it will run for ALL .feature files in your whole project. Very unintuitive. And good luck debugging problems caused by that! This problem was not unique to this plugin, but to the way cucumberjs operates.
-
-Let's look how this differs with the proposed structure. Assuming you want to have a hook before ./Google.feature file, just create a ./Google/before.js and put the hook there. This should take care of long requested feature - [https://github.com/TheBrainFamily/cypress-cucumber-preprocessor/issues/25](#25)
-
-If you have a few tests the "oldschool" style is completely fine. But for a large enterprise-grade application, with hundreds or sometimes thousands of .feature files, the fact that everything is global becomes a maintainability nightmare.
-
-We suggest to put:
-
-```json
-  "ignoreTestFiles": "*.js"
-```
-
-in your cypress.json to have a clean view of your tests in the cypress dashbord, and also so cypress doesn't try to run your step definition files as tests in CI.
-
-### Step Definition location configuration
-
-Step definition files are by default in: `cypress/support/step_definitions`. If you want to put them somewhere please use [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) format. For example, add to your package.json :
-
-```javascript
-  "cypress-cucumber-preprocessor": {
-    "step_definitions": "cypress/support/step_definitions/"
-  }
-```
-
-Follow your configuration or use the defaults and put your step definitions in `cypress/support/step_definitions`
-
-Examples:
-cypress/support/step_definitions/google.js
-
-```javascript
-import { Given } from "cypress-cucumber-preprocessor/steps";
-
-const url = 'https://google.com'
-Given('I open Google page', () => {
-  cy.visit(url)
-})
-```
-
-cypress/support/step_definitions/shared.js
-
-```javascript
-import { Then } from "cypress-cucumber-preprocessor/steps";
-
-Then(`I see {string} in the title`, (title) => {
-  cy.title().should('include', title)
-})
-```
