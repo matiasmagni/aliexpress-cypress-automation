@@ -14,9 +14,7 @@ fs.readFile(metadataFile, "utf-8", (error, metadata) => {
     const options = {
       theme: "hierarchy",
       jsonDir: "cypress/reports",
-      output: `cypress/reports/${moment().format(
-        "YYYY-MM-DD_h-mm-ssa"
-      )}_aliexpress-report.html`,
+      output: `cypress/reports/${moment().format("YYYY-MM-DD_h-mm-ssa")}_${data.browser}_aliexpress-report.html`,
       reportSuiteAsScenarios: true,
       scenarioTimestamp: true,
       launchReport: true,
@@ -24,7 +22,7 @@ fs.readFile(metadataFile, "utf-8", (error, metadata) => {
       metadata: {
         "App Version": "1.0.0",
         "Test Environment": "QA",
-        Browser: data.browser,
+        Browser: `${data.browser} v${data.browserVersion}`,
         Platform: data.platform,
         Parallel: "Scenarios",
         Executed: "Locally",

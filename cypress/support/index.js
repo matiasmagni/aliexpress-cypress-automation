@@ -27,7 +27,8 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 before(() => {
     const metadata = {
         platform: Cypress.platform,
-        browser: `${Cypress.browser.displayName} v${Cypress.browser.version}`,
+        browser: Cypress.browser.displayName,
+        browserVersion: Cypress.browser.version
     };
     cy.writeFile("cypress/reports/metadata.json", metadata);
 });

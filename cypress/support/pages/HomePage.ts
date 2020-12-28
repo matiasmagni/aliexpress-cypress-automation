@@ -1,4 +1,4 @@
-import BasePage from "./BasePage";
+import BasePage from './BasePage';
 
 export default class HomePage extends BasePage {
     /**
@@ -10,7 +10,7 @@ export default class HomePage extends BasePage {
         // Workaround for command timeout on first load.
         cy.visit(this.getUrl(), {
             timeout: timeout * 1000,
-            onBeforeLoad: win => {
+            onBeforeLoad: (win: any) => {
                 win.sessionStorage.clear();
             }
         });
