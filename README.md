@@ -372,7 +372,7 @@ This behaviour is configurable. Use [cosmiconfig](https://github.com/davidthecla
   "cypress-cucumber-preprocessor": {
     "cucumberJson": {
       "generate": true,
-      "outputFolder": "cypress/cucumber-json",
+      "outputFolder": "cypress/reports",
       "filePrefix": "",
       "fileSuffix": ".cucumber"
     }
