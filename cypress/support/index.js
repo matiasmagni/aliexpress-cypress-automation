@@ -24,6 +24,5 @@ before(() => {
         platform: Cypress.platform,
         browser: `${Cypress.browser.displayName} v${Cypress.browser.version}`,
     };
-    cy.log("BROWSER", metadata);
     cy.writeFile("cypress/reports/metadata.json", metadata);
 });

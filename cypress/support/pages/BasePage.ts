@@ -8,15 +8,20 @@ export default abstract class BasePage {
 
     constructor() {
         this.selectors = require(`../../fixtures/selectors/${this.constructor.name}.json`);
-        this.url = `${Cypress.env('baseUrl')}/${this.selectors.URL}`;
+        this.url = this.selectors.URL;
     }
 
     public getUrl(): string {
         return this.url;
     }
 
-    public navigateToThisPage() {
-        cy.visit(this.getUrl());
+    /**
+     * Navigates to this page object's URL.
+     * 
+     * @param timeout in seconds.
+     */
+    public navigateToThisPage(timeout: number = 10) {
+        cy.visit(this.getUrl(), { timeout: timeout * 1000 });
     }
 
     protected scrollSlowlyToBottom() {
