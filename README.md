@@ -25,7 +25,7 @@ Demo video:
   * [Background section](#background-section)
   * [Sharing context](#sharing-context)
   * [Smart tagging](#smart-tagging)
-* [How to run the tests](#excluding-tests)
+* [How to run the tests](#how-to-run-the-tests)
   * [Running tagged tests](#running-tagged-tests)
   * [Ignoring specific scenarios using tags when executing test runner](#ignoring-specific-scenarios-using-tags-when-executing-test-runner)
   * [Output](#output)
@@ -291,6 +291,12 @@ To run the tests:
 
 ```shell
 yarn test
+```
+
+To run the tests on all supported browsers (Chrome, Firefox and Edge):
+
+```shell
+yarn test:all-browsers
 ```
 
 To run the tests using online Cypress' dashboard:
