@@ -1,5 +1,5 @@
 {
-    "URL": "wholesale",
+    "URL": "/wholesale",
     "NAV_BREADCRUMB": ".nav-breadcrumb",
     "PAGINATOR_NEXT_BUTTON": ".next-next",
     "PAGINATOR_CURRENT_PAGE_BUTTON": ".next-current",

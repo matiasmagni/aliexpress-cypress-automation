@@ -8,7 +8,7 @@ import SearchResultsPage from "../pages/SearchResultsPage";
 
 Given(`the customer has navigated to AliExpress home page`, () => {
   const page = new HomePage();
-  page.navigateToThisPage(30);
+  page.navigateToThisPage(60);
 });
 
 When(`the customer searches for {string} on AliExpress searchbox`, (searchText: string) => {

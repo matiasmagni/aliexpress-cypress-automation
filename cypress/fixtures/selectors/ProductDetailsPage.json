@@ -1,4 +1,4 @@
 {
-    "URL": "item",
+    "URL": "/item",
     "AVAILABLE_ITEMS": ".product-quantity-tip span"
 }
