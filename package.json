@@ -9,8 +9,8 @@
     "moment": "^2.29.1"
   },
   "scripts": {
-    "test": "cypress run --spec \"**/*.feature\" || node cucumber-html-reporter.js",
-    "test:all-browsers": "(cypress run --browser chrome --spec \"**/*.feature\" || node cucumber-html-reporter.js) & (cypress run --browser firefox --spec \"**/*.feature\" || node cucumber-html-reporter.js) & (cypress run --browser edge --spec \"**/*.feature\" || node cucumber-html-reporter.js)",
+    "test": "cypress run --spec \"**/*.feature\" ; node cucumber-html-reporter.js",
+    "test:all-browsers": "(cypress run --browser chrome --spec \"**/*.feature\" ; node cucumber-html-reporter.js) & (cypress run --browser firefox --spec \"**/*.feature\" ; node cucumber-html-reporter.js) & (cypress run --browser edge --spec \"**/*.feature\" ; node cucumber-html-reporter.js)",
     "test:dashboard": "cypress run --record --key 56743765-22e8-497d-b048-33790dab5475",
     "debug": "cypress open",
     "clean:reports": "node remove-all-reports.js"
