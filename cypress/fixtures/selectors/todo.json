@@ -1,0 +1,4 @@
+{
+    "todoContainer": ".todo-list",
+    "todoItem": ".todo-list li"
+}

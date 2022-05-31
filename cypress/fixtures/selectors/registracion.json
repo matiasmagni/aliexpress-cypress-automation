@@ -1,0 +1,7 @@
+{
+    "titulo": ".page-heading",
+    "labelEmail": "[for='email_create']",
+    "inputEmail": "#email_create",
+    "botonCreateAnAccount": "#SubmitCreate",
+    "formularioDatos": "#account-creation_form"
+}
