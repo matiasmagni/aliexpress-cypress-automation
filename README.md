@@ -1,4 +1,4 @@
-# membrane-demo
+# cypress-starter
 
 Proyecto de inicio de E2E testing con Cypress.
 
