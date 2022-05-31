@@ -6,10 +6,10 @@ Proyecto de inicio de E2E testing con Cypress.
 
 * [Inicio](#inicio)
   * [Instalación](#instalacion)
-* [¿Cómo organizar los tests?](#como-organizar-los-tests)
+* [¿Cómo organizar los tests?](#¿cómo-organizar-los-tests?)
   * [Un archivo por test suite](#un-archivo-por-test-suite)
   * [Compartir el contexto](#compartir-el-contexto)
-* [¿Cómo correr los tests?](#como-correr-los-tests)
+* [¿Cómo correr los tests?](#cómo-correr-los-tests)
 
 ## Inicio
 
