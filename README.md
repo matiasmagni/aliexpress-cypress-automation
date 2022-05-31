@@ -5,8 +5,8 @@ Proyecto de inicio de E2E testing con Cypress.
 #### Índice
 
 * [Inicio](#inicio)
-  * [Instalación](#instalacion)
-* [¿Cómo organizar los tests?](#¿cómo-organizar-los-tests?)
+  * [Instalación](#instalación)
+* [¿Cómo organizar los tests?](#cómo-organizar-los-tests)
   * [Un archivo por test suite](#un-archivo-por-test-suite)
   * [Compartir el contexto](#compartir-el-contexto)
 * [¿Cómo correr los tests?](#cómo-correr-los-tests)
