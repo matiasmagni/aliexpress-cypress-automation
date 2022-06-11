@@ -1,0 +1,11 @@
+{
+
+    "labelloginpanel": "#logInPanelHeading",
+    "labellogintext": "LOGIN Panel",
+    "campousername": "[name='txtUsername']",
+    "campopassword": "[name='txtPassword']",
+    "botonlogin": "[class='button']",
+    "botonlogintext": "LOGIN",
+    "labelwelcome": "[class='panelTrigger']",
+    "labelwelcometext": "Welcome Paul"
+}

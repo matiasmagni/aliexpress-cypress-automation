@@ -1,5 +1,7 @@
 {
-    "emailValido": "matias.magni+test-nuevo@gmail.com",
-    "passwordValido": "M@t14sM4gn1",
-    "emailExistente": "matias.magni+test@gmail.com"
+    "emailvalido": "coquito@gmail.com",
+    "emailinvalido": "nicosala@gmail.com",
+    "passwordvalido": "12345678",
+    "formemailinv": "coco.com"
+    
 }

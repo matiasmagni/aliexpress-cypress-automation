@@ -1,7 +1,30 @@
 {
     "titulo": ".page-heading",
+    "titulotext": "Authentication",
     "labelEmail": "[for='email_create']",
     "inputEmail": "#email_create",
-    "botonCreateAnAccount": "#SubmitCreate",
-    "formularioDatos": "#account-creation_form"
+    "createaccount": "#SubmitCreate",
+    "personalinformation": "#account-creation_form",
+    "yourinformation": "#account-creation_form > div:nth-child(1) > h3",
+    "mensajeerror": "#create_account_error > ol > li",
+    "mensginvemail": "#create_account_error",
+
+    "titulologueo": "#login_form > h3",
+    "titulologueotext": "Already registered?",
+    "labelemaillogin": "[for='email']",
+    "labelemailtext": "Email address",
+    "inputemaillogin": "#email",
+    "labelpassword": "[for='passwd']",
+    "labelpasswordtext": "Password",
+    "inputpass": "#passwd",
+    "botonlogin": "#SubmitLogin",
+    "titulomyaccount": "My account - My Store",
+    "labelmyaccount": "[class='page-heading']",
+    "labelmyaccounttext": "My account",
+    "cartelfaltapassword": "#center_column > div.alert.alert-danger > ol > li",
+    "cartelfaltaemail": "#center_column > div.alert.alert-danger > ol > li",
+    "cartelemailinv": "#center_column > div.alert.alert-danger > ol > li"
+    
+    
 }
+

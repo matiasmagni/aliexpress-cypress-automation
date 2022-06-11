@@ -10,9 +10,9 @@ context('Files', () => {
   })
 
   beforeEach(() => {
-    // load data/example.json fixture file and store
+    // load example.json fixture file and store
     // in the test context object
-    cy.fixture('data/example.json').as('example')
+    cy.fixture('example.json').as('example')
   })
 
   it('cy.fixture() - load a fixture', () => {
@@ -22,8 +22,8 @@ context('Files', () => {
     // use a fixture file's content.
 
     // when application makes an Ajax request matching "GET **/comments/*"
-    // Cypress will intercept it and reply with the object in `data/example.json` fixture
-    cy.intercept('GET', '**/comments/*', { fixture: 'data/example.json' }).as('getComment')
+    // Cypress will intercept it and reply with the object in `example.json` fixture
+    cy.intercept('GET', '**/comments/*', { fixture: 'example.json' }).as('getComment')
 
     // we have code that gets a comment when
     // the button is clicked in scripts.js
